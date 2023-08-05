@@ -312,7 +312,8 @@ lspconfig.rust_analyzer.setup {
 }
 
 lspconfig.clangd.setup {
-  capabilities = capabilities
+  cmd = { "clangd", "--header-insertion=never" },
+  capabilities = capabilities,
 }
 
 lspconfig.bashls.setup {
@@ -333,10 +334,9 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 vim.cmd('autocmd FileType cpp setlocal shiftwidth=4')
 
 -- show copy filed when copy
-vim.cmd[[
+vim.cmd [[
 augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
 augroup END
 ]]
-

@@ -5,15 +5,6 @@
 { config, pkgs, ... }:
 
 {
-  # setup mirrors
-  nix.settings.substituters =
-    [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
-
-  # set-local-rtc 1
-  time.hardwareClockInLocalTime = true;
-
-  # use tlp in nvidia.nix , so false this
-  services.power-profiles-daemon.enable = false;
 
   imports = [
     # Include the results of the hardware scan.
@@ -21,9 +12,30 @@
     ./nvidia.nix
   ];
 
+  # setup mirrors
+  nix.settings.substituters =
+    [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
+  # nix.settings.substituters =
+  #  [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
+
+
+  # NUR
+  nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball
+      "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+        inherit pkgs;
+      };
+  };
+
+  # set-local-rtc 1
+  time.hardwareClockInLocalTime = true;
+
+  # use tlp in nvidia.nix , so false this
+  services.power-profiles-daemon.enable = false;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  #boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -102,6 +114,11 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # virtualbox
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "liu" ];
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -124,28 +141,45 @@
     kate
     joshuto
     bat
+    file
+    ripgrep
+    unrar
+    p7zip
+
+    nodejs_20
 
     nixfmt
 
+    gcc
+    gccStdenv
     clang_16
     clang-tools
     llvmPackages_16.stdenv
 
-    gcc
-    gccStdenv
-
     rust-analyzer
     rustup
-    
+
     lua-language-server
 
     nodePackages_latest.bash-language-server
 
+    python311
+    python311Packages.virtualenv
+    nodePackages_latest.pyright
+
     # desktop application
     google-chrome
-    obsidian
     qq
     wpsoffice-cn
+    gnome.pomodoro
+    obs-studio
+    obsidian
+    marktext
+    jetbrains.pycharm-community
+    libsForQt5.filelight
+
+    # NUR packages
+    nur.repos.liyangau.hexo-cli
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
