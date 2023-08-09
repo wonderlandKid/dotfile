@@ -66,7 +66,13 @@ vim.keymap.set('n', '<leader>bh', ':BufferLineCloseLeft<CR>', my_opts)
 
 -- 'windwp/nvim-autopairs'
 require("nvim-autopairs").setup {}
-
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp = require('cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
 
 -- 'nvim-tree/nvim-tree.lua'
 vim.keymap.set('n', '<A-2>', ':NvimTreeToggle<CR>', my_opts)
@@ -303,6 +309,23 @@ lspconfig.pyright.setup {
   capabilities = capabilities
 }
 
+
+-- lspconfig.pyright.setup {
+--   capabilities = capabilities,
+--   settings = {
+--     pyright = { autoImportCompletion = true, },
+--     python = {
+--       analysis = {
+--         autoSearchPaths = true,
+--         diagnosticMode = 'openFilesOnly',
+--         useLibraryCodeForTypes = true,
+--         typeCheckingMode = 'off'
+--       }
+--     }
+--   }
+-- }
+
+
 lspconfig.rust_analyzer.setup {
   capabilities = capabilities,
   -- Server-specific settings. See `:help lspconfig-setup`
@@ -318,6 +341,19 @@ lspconfig.clangd.setup {
 
 lspconfig.bashls.setup {
   capabilities = capabilities
+}
+
+lspconfig.nil_ls.setup {
+  autostart = true,
+  capabilities = capabilities,
+  settings = {
+    ['nil'] = {
+      testSetting = 42,
+      formatting = {
+        command = { "nixfmt" },
+      },
+    },
+  },
 }
 
 

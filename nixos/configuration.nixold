@@ -4,30 +4,31 @@
 
 { config, pkgs, ... }:
 
-let unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-in {
+{
+
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./nvidia.nix
+    #./nvidia.nix
   ];
 
   # setup mirrors
   #nix.settings.substituters =
-  #[ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
-  nix.settings.substituters = [
-    "https://mirrors.ustc.edu.cn/nix-channels/store"
-    "https://mirrors.bfsu.edu.cn/nix-channels/store"
-    "https://cache.nixos.org"
-  ];
+    #[ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
+   nix.settings.substituters =
+    [ "https://mirrors.ustc.edu.cn/nix-channels/store"
+      "https://mirrors.bfsu.edu.cn/nix-channels/store"
+      "https://cache.nixos.org"
+ ];
+
 
   # NUR
-  nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball
-      "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-        inherit pkgs;
-      };
-  };
+#  nixpkgs.config.packageOverrides = pkgs: {
+#    nur = import (builtins.fetchTarball
+#      "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+#        inherit pkgs;
+#      };
+#  };
 
   # set-local-rtc 1
   time.hardwareClockInLocalTime = true;
@@ -68,32 +69,32 @@ in {
   };
 
   # Enable the X11 windowing system
-  services.xserver.enable = true;
+  #services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  #services.xserver.displayManager.sddm.enable = true;
+  #services.xserver.desktopManager.plasma5.enable = true;
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  #services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
+#  # Enable sound with pipewire.
+#  sound.enable = true;
+#  hardware.pulseaudio.enable = false;
+#  security.rtkit.enable = true;
+#  services.pipewire = {
+#    enable = true;
+#    alsa.enable = true;
+#    alsa.support32Bit = true;
+#    pulse.enable = true;
+#    # If you want to use JACK applications, uncomment this
+#    #jack.enable = true;
+#
+#    # use the example session manager (no others are packaged yet so this is enabled by default,
+#    # no need to redefine it in your config for now)
+#    #media-session.enable = true;
+#  };
+#
   # Configure keymap in X11
   services.xserver = {
     layout = "cn";
@@ -108,18 +109,18 @@ in {
     packages = with pkgs; [ ];
   };
 
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [ fcitx5-rime ];
-  };
+#  i18n.inputMethod = {
+#    enabled = "fcitx5";
+#    fcitx5.addons = with pkgs; [ fcitx5-rime ];
+#  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # virtualbox
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "liu" ];
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+#  virtualisation.virtualbox.host.enable = true;
+#  users.extraGroups.vboxusers.members = [ "liu" ];
+#  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -128,62 +129,60 @@ in {
     neovim
     wget
     curl
-    wezterm
-    git
-    unstable.vscode
+    #wezterm
+    #git
     #vscode
     clash
-    exa
-    cmake
-    ninja
-    xclip
-    trash-cli
-    fzf
-    tealdeer
-    neofetch
-    kate
-    joshuto
-    bat
-    file
-    ripgrep
-    unrar
-    p7zip
-
-    nodejs_20
-
-    nixfmt
-    nil
-
-    gcc
-    gccStdenv
-    clang_16
-    clang-tools
-    llvmPackages_16.stdenv
-
-    rust-analyzer
-    rustup
-
-    lua-language-server
-
-    nodePackages_latest.bash-language-server
-
-    python311
-    python311Packages.virtualenv
-    nodePackages_latest.pyright
-
-    # desktop application
-    google-chrome
-    qq
-    wpsoffice-cn
-    gnome.pomodoro
-    obs-studio
-    obsidian
-    marktext
-    jetbrains.pycharm-community
-    libsForQt5.filelight
-
-    # NUR packages
-    nur.repos.liyangau.hexo-cli
+    #exa
+    #cmake
+    #ninja
+    #xclip
+    #trash-cli
+    #fzf
+    #tealdeer
+    #neofetch
+    #kate
+    #joshuto
+    #bat
+    #file
+    #ripgrep
+    #unrar
+    #p7zip
+#
+    #nodejs_20
+#
+#    nixfmt
+#
+#    gcc
+#    gccStdenv
+#    clang_16
+#    clang-tools
+#    llvmPackages_16.stdenv
+#
+#    rust-analyzer
+#    rustup
+#
+#    lua-language-server
+#
+#    nodePackages_latest.bash-language-server
+#
+#    python311
+#    python311Packages.virtualenv
+#    nodePackages_latest.pyright
+#
+#    # desktop application
+#    google-chrome
+#    qq
+#    wpsoffice-cn
+#    gnome.pomodoro
+#    obs-studio
+#    obsidian
+#    marktext
+#    jetbrains.pycharm-community
+#    libsForQt5.filelight
+#
+#    # NUR packages
+#    nur.repos.liyangau.hexo-cli
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
