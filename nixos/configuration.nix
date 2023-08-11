@@ -130,7 +130,7 @@ in {
     curl
     wezterm
     git
-    unstable.vscode
+    unstable.vscode-fhs
     #vscode
     clash
     exa
@@ -154,6 +154,7 @@ in {
     nixfmt
     nil
 
+    gdb
     gcc
     gccStdenv
     clang_16
@@ -194,10 +195,16 @@ in {
   #   enableSSHSupport = true;
   # };
 
+  programs.neovim = {
+    viAlias = true;
+    vimAlias = true;
+  };
+  environment.variables.EDITOR = "nvim";
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

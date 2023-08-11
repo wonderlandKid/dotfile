@@ -353,8 +353,7 @@ lspconfig.nil_ls.setup {
         command = { "nixfmt" },
       },
     },
-  },
-}
+  }, }
 
 
 -- make .zshrc highlight like bash file
