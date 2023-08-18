@@ -148,6 +148,11 @@ in {
     ripgrep
     unrar
     p7zip
+    efibootmgr
+    zoxide
+
+    # C#
+    mono
 
     nodejs_20
 
@@ -178,10 +183,11 @@ in {
     wpsoffice-cn
     gnome.pomodoro
     obs-studio
-    obsidian
+    unstable.obsidian
     marktext
     jetbrains.pycharm-community
     libsForQt5.filelight
+    gparted
 
     # NUR packages
     nur.repos.liyangau.hexo-cli
