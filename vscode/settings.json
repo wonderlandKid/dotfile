@@ -1,0 +1,21 @@
+{
+    "cmake.configureOnOpen": true,
+    "files.autoSave": "afterDelay",
+    "editor.fontSize": 18,
+    "editor.fontFamily": "JetBrainsMono Nerd Font",
+    "editor.tabSize": 2,
+    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "workbench.list.smoothScrolling": true,
+    "terminal.integrated.smoothScrolling": true,
+    "editor.smoothScrolling": true,
+    "editor.inlayHints.enabled": "off",
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "workbench.iconTheme": "vscode-icons",
+    "files.autoGuessEncoding": true,
+    "redhat.telemetry.enabled": false,
+    "vsicons.dontShowNewVersionMessage": true,
+    "update.showReleaseNotes": false,
+}
