@@ -31,6 +31,12 @@ local my_opts = { noremap = true, silent = true }
 
 ----------------------------------------------------------plugins------------------------------------------------------------
 
+-- 'lukas-reineke/indent-blankline.nvim'
+require("indent_blankline").setup {
+  -- for example, context is off by default, use this to turn it on
+  show_current_context = true,
+}
+
 -- 'simrat39/symbols-outline.nvim'
 require("symbols-outline").setup()
 vim.keymap.set("n", "<A-3>", ":SymbolsOutline<CR>", my_opts)
@@ -90,7 +96,7 @@ require("nvim-tree").setup({
 -- 'nvim-treesitter/nvim-treesitter'
 require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "rust", "cpp", "python", "bash", "nix" },
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "rust", "cpp", "python", "nix" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -270,6 +276,8 @@ cmp.setup.cmdline(':', {
   })
 })
 
+require("mason").setup()
+require("mason-lspconfig").setup()
 
 ----------------------------------------plugins end-----------------------------------------------
 

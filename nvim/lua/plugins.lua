@@ -1,5 +1,7 @@
 return {
   "neovim/nvim-lspconfig",
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
 
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/cmp-buffer',
@@ -12,6 +14,8 @@ return {
   'numToStr/Comment.nvim',
   'simrat39/symbols-outline.nvim',
   'ggandor/leap.nvim',
+  'lukas-reineke/indent-blankline.nvim',
+
   {
     'akinsho/bufferline.nvim',
     version = "*",
