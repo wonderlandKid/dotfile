@@ -28,7 +28,7 @@ vim.opt.splitbelow = true                  -- force all horizontal splits to go 
 vim.opt.splitright = true                  -- force all vertical splits to go to the right of current window
 vim.opt.swapfile = false                   -- creates a swapfile
 vim.opt.termguicolors = true               -- set term gui colors (most terminals support this)
-vim.opt.timeoutlen = 100                   -- time to wait for a mapped sequence to complete (in milliseconds)
+-- vim.opt.timeoutlen = 100                   -- time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.title = true                       -- set the title of window to the value of the titlestring
 vim.opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
 vim.opt.undodir = vim.fn.stdpath "cache" .. "/undo"
@@ -44,7 +44,7 @@ vim.opt.relativenumber = true              -- set relative numbered lines
 vim.opt.numberwidth = 2                    -- set number column width to 2 {default 4}
 vim.opt.signcolumn = "yes"                 -- always show the sign column otherwise it would shift the text each time
 vim.opt.wrap = false                        -- display lines as one long line
-vim.opt.scrolloff = 8                      -- is one of my fav
+vim.opt.scrolloff = 4                      -- is one of my fav
 vim.opt.sidescrolloff = 8
 
 -- vim.cmd.colorscheme "catppuccin-macchiato"

@@ -1,7 +1,8 @@
 var:
-  last_build_time: 1690947320
+  last_build_time: 1692767263
   option:
     ascii_punct: true
+    full_shape: false
     simplification: true
   previously_selected_schema: clover
   schema_access_time:

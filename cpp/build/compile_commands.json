@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/liu/code/cpp/build",
+  "command": "/usr/bin/g++ -I/home/liu/code/cpp/include -g -o CMakeFiles/test.dir/mytest.cpp.o -c /home/liu/code/cpp/mytest.cpp",
+  "file": "/home/liu/code/cpp/mytest.cpp"
+}
+]

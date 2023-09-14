@@ -25,5 +25,14 @@ config.color_scheme = "Catppuccin Macchiato"
 
 config.window_background_opacity = 0.9
 
+-- How many lines of scrollback you want to retain per tab
+config.scrollback_lines = 5000
+
+-- Enable the scrollbar.
+-- It will occupy the right window padding space.
+-- If right padding is set to 0 then it will be increased
+-- to a single cell width
+config.enable_scroll_bar = true
+
 
 return config

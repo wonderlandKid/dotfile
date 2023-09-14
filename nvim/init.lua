@@ -38,7 +38,70 @@ require("indent_blankline").setup {
 }
 
 -- 'simrat39/symbols-outline.nvim'
-require("symbols-outline").setup()
+local opts = {
+  highlight_hovered_item = true,
+  show_guides = true,
+  auto_preview = false,
+  position = 'right',
+  relative_width = true,
+  width = 25,
+  auto_close = false,
+  show_numbers = false,
+  show_relative_numbers = false,
+  show_symbol_details = true,
+  preview_bg_highlight = 'Pmenu',
+  autofold_depth = 2,
+  auto_unfold_hover = true,
+  fold_markers = { '', '' },
+  wrap = false,
+  keymaps = { -- These keymaps can be a string or a table for multiple keys
+    close = { "<Esc>", "q" },
+    goto_location = "<Cr>",
+    focus_location = "o",
+    hover_symbol = "<C-space>",
+    toggle_preview = "K",
+    rename_symbol = "r",
+    code_actions = "a",
+    fold = "h",
+    unfold = "l",
+    fold_all = "W",
+    unfold_all = "E",
+    fold_reset = "R",
+  },
+  lsp_blacklist = {},
+  symbol_blacklist = {},
+  -- symbols = {
+  --   File = { icon = "", hl = "@text.uri" },
+  --   Module = { icon = "", hl = "@namespace" },
+  --   Namespace = { icon = "", hl = "@namespace" },
+  --   Package = { icon = "", hl = "@namespace" },
+  --   Class = { icon = "𝓒", hl = "@type" },
+  --   Method = { icon = "ƒ", hl = "@method" },
+  --   Property = { icon = "", hl = "@method" },
+  --   Field = { icon = "", hl = "@field" },
+  --   Constructor = { icon = "", hl = "@constructor" },
+  --   Enum = { icon = "ℰ", hl = "@type" },
+  --   Interface = { icon = "ﰮ", hl = "@type" },
+  --   Function = { icon = "", hl = "@function" },
+  --   Variable = { icon = "", hl = "@constant" },
+  --   Constant = { icon = "", hl = "@constant" },
+  --   String = { icon = "𝓐", hl = "@string" },
+  --   Number = { icon = "#", hl = "@number" },
+  --   Boolean = { icon = "⊨", hl = "@boolean" },
+  --   Array = { icon = "", hl = "@constant" },
+  --   Object = { icon = "⦿", hl = "@type" },
+  --   Key = { icon = "🔐", hl = "@type" },
+  --   Null = { icon = "NULL", hl = "@type" },
+  --   EnumMember = { icon = "", hl = "@field" },
+  --   Struct = { icon = "𝓢", hl = "@type" },
+  --   --Event = { icon = "🗲", hl = "@type" },
+  --   Operator = { icon = "+", hl = "@operator" },
+  --   TypeParameter = { icon = "𝙏", hl = "@parameter" },
+  --   Component = { icon = "", hl = "@function" },
+  --   Fragment = { icon = "", hl = "@constant" },
+  -- },
+}
+require("symbols-outline").setup(opts)
 vim.keymap.set("n", "<A-3>", ":SymbolsOutline<CR>", my_opts)
 
 
@@ -96,7 +159,8 @@ require("nvim-tree").setup({
 -- 'nvim-treesitter/nvim-treesitter'
 require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "rust", "cpp", "python", "nix" },
+  -- ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "rust", "cpp", "nix" },
+  ensure_installed = {},
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -113,7 +177,6 @@ require 'nvim-treesitter.configs'.setup {
 
   highlight = {
     enable = true,
-
     -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
     -- the name of the parser)
@@ -351,17 +414,18 @@ lspconfig.bashls.setup {
   capabilities = capabilities
 }
 
-lspconfig.nil_ls.setup {
-  autostart = true,
-  capabilities = capabilities,
-  settings = {
-    ['nil'] = {
-      testSetting = 42,
-      formatting = {
-        command = { "nixfmt" },
-      },
-    },
-  }, }
+-- lspconfig.nil_ls.setup {
+--   autostart = true,
+--   capabilities = capabilities,
+--   settings = {
+--     ['nil'] = {
+--       testSetting = 42,
+--       formatting = {
+--         command = { "nixfmt" },
+--       },
+--     },
+--   },
+-- }
 
 
 -- make .zshrc highlight like bash file
@@ -382,4 +446,11 @@ augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
 augroup END
+]]
+
+
+vim.cmd [[
+set signcolumn=yes
+autocmd CursorHold * lua vim.lsp.buf.document_highlight()
+autocmd CursorMoved * lua vim.lsp.buf.clear_references()
 ]]
