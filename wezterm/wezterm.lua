@@ -5,7 +5,11 @@ local config = {}
 
 --字体配置
 config.font = wezterm.font_with_fallback {
-  'JetBrainsMono Nerd Font',
+  {
+    family = 'JetBrainsMonoNL Nerd Font',
+    weight = 'Medium',
+    harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
+  },
   'SFMono Nerd Font',
   '思源黑体 CN',
 }
@@ -33,6 +37,5 @@ config.scrollback_lines = 5000
 -- If right padding is set to 0 then it will be increased
 -- to a single cell width
 config.enable_scroll_bar = true
-
 
 return config
