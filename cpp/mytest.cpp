@@ -1,3 +1,12 @@
-#include <fmt/core.h>
+#include <iostream>
+#include <stdexcept>
+#include <vector>
 
-int main() { fmt::print("自由打印!!{}, {} \n", 1, 2); }
+#include "backward.hpp"
+
+int main() {
+    backward::SignalHandling sh;
+    std::vector<int> vec{1,2};
+    std::cout<< vec[5];
+    return 0;
+}

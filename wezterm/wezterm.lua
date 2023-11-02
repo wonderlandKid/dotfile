@@ -1,7 +1,6 @@
 local wezterm = require 'wezterm'
 local config = {}
-
-
+local mux = wezterm.mux
 
 --字体配置
 config.font = wezterm.font_with_fallback {
@@ -27,7 +26,7 @@ config.keys = {
 
 config.color_scheme = "Catppuccin Macchiato"
 
--- config.window_background_opacity = 0.9
+config.window_background_opacity = 0.8
 
 -- How many lines of scrollback you want to retain per tab
 config.scrollback_lines = 5000
@@ -38,29 +37,28 @@ config.scrollback_lines = 5000
 -- to a single cell width
 config.enable_scroll_bar = true
 
--- config.window_background_image = '/home/liu/.config/wezterm/linm.jpg'
---
--- config.window_background_image_hsb = {
---   -- Darken the background image by reducing it to 1/3rd
---   brightness = 0.1,
---
---   -- You can adjust the hue by scaling its value.
---   -- a multiplier of 1.0 leaves the value unchanged.
---   hue = 1.0,
---
---   -- You can adjust the saturation also.
---   saturation = 1.0,
--- }
---
-
 local dimmer = { brightness = 0.05 } -- 调整亮度的参数
+-- config.background = {
+--   {
+--     source = {
+--       File = '/home/liu/.config/wezterm/linm.jpg',
+--     },
+--     width = 1920,  -- 你期望的壁纸宽度
+--     height = 1080, -- 你期望的壁纸高度
+--     repeat_x = 'NoRepeat',
+--     repeat_y = 'NoRepeat',
+--     attachment = 'Fixed',        -- 固定不随滚动而移动
+--     horizontal_align = 'Center', -- 水平居中
+--     vertical_align = 'Middle',   -- 垂直居中
+--     hsb = dimmer,
+--   },
+--   -- 其他层次的背景配置
+-- }
 config.background = {
   {
     source = {
       File = '/home/liu/.config/wezterm/linm.jpg',
     },
-    width = 1920,  -- 你期望的壁纸宽度
-    height = 1080, -- 你期望的壁纸高度
     repeat_x = 'NoRepeat',
     repeat_y = 'NoRepeat',
     attachment = 'Fixed',        -- 固定不随滚动而移动
@@ -70,5 +68,16 @@ config.background = {
   },
   -- 其他层次的背景配置
 }
+
+wezterm.on('gui-attached', function(domain)
+  -- maximize all displayed windows on startup
+  local workspace = mux.get_active_workspace()
+  for _, window in ipairs(mux.all_windows()) do
+    if window:get_workspace() == workspace then
+      window:gui_window():maximize()
+    end
+  end
+end)
+
 
 return config
