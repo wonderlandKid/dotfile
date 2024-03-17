@@ -68,16 +68,19 @@
     "disable-scroll": false,
     "all-outputs": true,
     "warp-on-scroll": false,
-    "format": "{name}: {icon}",
+    "format": "{name}: {icon}  ",
     "format-icons": {
-      "1": "  ",
-      "2": "  ",
-      "3": "  ",
-      "4": "  ",
-      "5": "  ",
-      "urgent": "",
-      "focused": "",
-      "default": ""
+      "1": " ",
+      "2": " ",
+      // "3": "  ",
+      "3": " ",
+      "4": " ",
+      // "5": "  ",
+      "5": " ",
+      "6": " ",
+      "urgent": " ",
+      "focused": " ",
+      "default": " "
     }
   },
 
@@ -107,7 +110,7 @@
 
   "pulseaudio": {
     "format": "{icon} {volume:2}%",
-    "format-bluetooth": "{icon}  {volume}%",
+    "format-bluetooth": "{icon} {volume}% ",
     "format-muted": "MUTE",
     "format-icons": {
       "headphones": "",
@@ -136,11 +139,11 @@
     },
     "format": "{icon} {capacity}%",
     "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
     ]
   },
   "disk": {
