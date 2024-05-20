@@ -2,6 +2,8 @@ theme = "catppuccin_macchiato"
 
 [editor]
 line-number = "relative"
+bufferline = "always"
+cursorline = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -17,10 +19,16 @@ mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
 
+
 [editor.indent-guides]
 render = true
 character = "╎" # Some characters that work well: "▏", "┆", "┊", "⸽"
 skip-levels = 1
+
+[editor.lsp]
+display-inlay-hints = true
+display-signature-help-docs = false
+
 
 [keys.insert]
 j = { k = "normal_mode" } # Maps `jk` to exit insert mode

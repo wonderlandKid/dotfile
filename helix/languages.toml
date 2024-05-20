@@ -1,0 +1,20 @@
+[[language]]
+auto-format = false
+name = "python"
+
+[language.indent]
+tab-width = 4
+unit = " "
+
+[language-server.pylsp]
+command = "/home/liu/.local/share/nvim/mason/bin/pylsp"
+
+[language-server.pylsp.config.plugins]
+[language-server.pylsp.config.plugins.black]
+enabled = true
+
+[language-server.pylsp.config.plugins.mypy]
+enable = true
+
+[language-server.pylsp.config.plugins.ruff]
+enable = true
