@@ -1,3 +1,15 @@
+[language-server.lua-language-server]
+command = "/home/liu/.local/share/nvim/mason/bin/lua-language-server"
+
+[language-server.lua-language-server.config.Lua.hint]
+enable = true
+arrayIndex = "Enable"
+setType = true
+paramName = "All"
+paramType = true
+await = true
+
+
 [[language]]
 auto-format = false
 name = "python"
